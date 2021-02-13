@@ -15,7 +15,7 @@ class Home extends Component {
             filterKeyword: '',
         }
     }
-
+    
     componentDidMount() {
         this.props.fetchUsersWithBlogCount();
 
@@ -35,7 +35,7 @@ class Home extends Component {
 
     render() {
         const list = this.props.users.map((user, i) => {
-            const num = this.props.numOfPosts.find(key => key.id === user.id ? key.num : 0)
+            const num = this.props.posts.find(key => key.id === user.id ? key.num : 0)
             if (this.state.filterKeyword === '') {
 
             } else {
@@ -64,7 +64,7 @@ class Home extends Component {
                     </thead>
                     <tbody>
                         {
-                           list.filter(Boolean).length > 0 ? list : <tr  key={list.length}><td colspan="3">No records found.</td></tr>
+                           list.filter(Boolean).length > 0 ? list : <tr  key={list.length}><td colSpan="3">No records found.</td></tr>
                         }
                     </tbody>
                 </table>
@@ -75,7 +75,7 @@ class Home extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return { users: state.users, numOfPosts: state.numOfPosts }
+    return { users: state.users, posts: state.posts }
 }
 
 export default connect(mapStateToProps, { fetchUsersWithBlogCount })(Home);

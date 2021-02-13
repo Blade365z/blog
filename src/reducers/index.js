@@ -5,7 +5,7 @@ import userDetailsReducer from './userDetailsReducer';
 
 const allreducers = combineReducers({
     users: usersReducer,
-    numOfPosts:postsReducer,
+    posts:postsReducer,
     userDetail : userDetailsReducer
 })
 
