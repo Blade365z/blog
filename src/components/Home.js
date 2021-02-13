@@ -4,23 +4,23 @@ import { fetchUsersWithBlogCount } from '../actions';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import InputForm from './InputForm';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 class Home extends Component {
-    constructor(){
+    constructor() {
         super();
         this.state = {
             filterParam: 'Username',
             filterKeyword: '',
         }
     }
-   
+
     componentDidMount() {
         this.props.fetchUsersWithBlogCount();
-       
+
     }
-      
+
     onFilterApply = (data) => {
         this.setState({
             filterKeyword: data
@@ -34,6 +34,23 @@ class Home extends Component {
     ComponentW
 
     render() {
+        const list = this.props.users.map((user, i) => {
+            const num = this.props.numOfPosts.find(key => key.id === user.id ? key.num : 0)
+            if (this.state.filterKeyword === '') {
+
+            } else {
+                if (this.state.filterParam === 'Username') {
+                    if (!user.name.includes(this.state.filterKeyword))
+                        return ;
+                } else {
+                    if (!user.company.name.includes(this.state.filterKeyword))
+                        return ;
+                }
+            }
+            return (<tr key={user.id}><td>{user.name}</td><td>{user.company.name}</td><td><Link className="link-parimary" to={`/posts/${user.id}`}> {
+                num ? num.num : 0
+            } blogs</Link></td></tr>)
+        })
         return (
             <div>
                 <InputForm filter={this.onFilterApply} searchBy={this.state.filterParam} updateSearchParams={this.updateSearchParams} />
@@ -43,27 +60,11 @@ class Home extends Component {
                             <th scope="col">User Name</th>
                             <th scope="col">Company</th>
                             <th scope="col">Blogs</th>
-                        </tr>
+                        </tr>   
                     </thead>
                     <tbody>
                         {
-                            this.props.users.map((user, i) => {
-                                const num = this.props.numOfPosts.find(key => key.id === user.id ? key.num : 0)
-                                if (this.state.filterKeyword === '') {
-
-                                } else {
-                                    if (this.state.filterParam === 'Username') {
-                                        if (!user.name.includes(this.state.filterKeyword))
-                                            return false;
-                                    } else {
-                                        if (!user.company.name.includes(this.state.filterKeyword))
-                                            return false;
-                                    }
-                                }
-                                return (<tr key={user.id}><td>{user.name}</td><td>{user.company.name}</td><td><Link className="link-parimary" to={`/posts/${user.id}`}> {
-                                    num ? num.num : 0 
-                                } blogs</Link></td></tr>)
-                            })
+                           list.filter(Boolean).length > 0 ? list : <tr  key={list.length}><td colspan="3">No records found.</td></tr>
                         }
                     </tbody>
                 </table>
@@ -74,7 +75,6 @@ class Home extends Component {
 }
 
 const mapStateToProps = (state) => {
-
     return { users: state.users, numOfPosts: state.numOfPosts }
 }
 

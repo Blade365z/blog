@@ -7,6 +7,13 @@
         margin-top: 5px;
         max-width: 100%;
     }
+    .userPhoto{
+        font-size:2em   ;
+    }
+    .userCard{
+        max-width: 100%;
+        margin-top:5px;
+    }
 }
 
 @media (min-width:481px) {
@@ -28,6 +35,13 @@
     .filter-form{
         margin-top: 0px;
         max-width: 40%;
+    }
+    .userPhoto{
+        font-size:3em   ;
+    }
+    .userCard{
+        max-width:50%;
+        margin-top:5px;
     }
     /* big landscape tablets, laptops, and desktops */
   
