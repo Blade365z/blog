@@ -3,7 +3,8 @@
 }
 .posts-card:hover{
    cursor: pointer;
-   background-color: rgba(128, 128, 128, 0.253)  !important;
+   background-color:#0d6efd ;
+   color:white;
 }
 .pagesDiv{
     justify-content: center;
@@ -12,15 +13,18 @@
 .page-nos{
     cursor: pointer;
 }
-.posts{
-    height: 250px;
-    overflow-y: auto;
-}
+
 .active-page{
     background-color: rgba(128, 128, 128, 0.192);
 }
 .loader{
 text-align: center;
+}
+.posts-card{
+    list-style: none;
+    margin:6px 6px 10px 6px;
+    padding:10px 10px 10px 10px;
+    background-color: rgba(0, 0, 255, 0.164);
 }
 @media (min-width:320px) {
     /* smartphones, iPhone, portrait 480x320 phones */
@@ -39,11 +43,18 @@ text-align: center;
         margin-top:15px;
 
     }
-    .posts-card{
-        list-style: none;
-        margin:6px;
-        padding:10px 10px 10px 10px;
-        border: 0.5px solid;
+  
+    .user-post-nav{
+        display: block;
+    }
+    .posts{
+        min-height: 300px;
+        max-height: 400px;
+        overflow-y: auto;
+    }
+    .pagesDiv{
+        margin-bottom: 0px;
+        margin-top: 20px;
     }
 }
 
@@ -58,7 +69,9 @@ text-align: center;
 }
 
 @media (min-width:961px) {
-   
+    .user-post-nav{
+        display: flex;
+    }
     /* tablet, landscape iPad, lo-res laptops ands desktops */
 }
 
@@ -75,7 +88,10 @@ text-align: center;
         margin-top:5px;
     }
     /* big landscape tablets, laptops, and desktops */
-  
+    .pagesDiv{
+        margin-bottom: 0px;
+        margin-top: 0px;
+    }
 }
 
 @media (min-width:1281px) {
@@ -90,7 +106,7 @@ text-align: center;
     border-radius: 50%;
     width: 15px;
     height: 15px;
-    margin-top: 8%;
+    margin-top: 7%;
     animation: donut-spin 1.2s linear infinite;
 }
 

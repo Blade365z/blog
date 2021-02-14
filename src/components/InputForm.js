@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 export default class InputForm extends Component {
     render() {
         return (
-            <div>
+          
                 <div className="input-group mb-2 ms-auto filter-form" >
                     <label className="input-group-text text-muted"> <i className="fas fa-filter me-1 "></i> Filter by</label>
                    { this.props.updateSearchParams &&  <select className="form-select"  style={{ maxWidth: '30%' }} onChange={(e)=>{
@@ -17,7 +17,7 @@ export default class InputForm extends Component {
                     }} />
                 </div>
 
-            </div>
+          
         )
     }
 }

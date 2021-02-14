@@ -20,7 +20,7 @@ class Pages extends Component {
             <div >
                 <nav className="" saria-label="Page navigation example">
                     <div>{this.props.numOfPosts}</div>
-                    <ul className="pagination pagesDiv">
+                    <ul className="pagination pagesDiv ">
                         {pagesBtn}
                     </ul>
                 </nav>
