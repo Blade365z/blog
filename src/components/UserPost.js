@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { fetchUserDetails, getPostsForAUserWithPagination } from '../actions';
+import { fetchUserDetails, getPostsForAUserWithPagination,getPostsForAUser } from '../actions';
 import { connect } from 'react-redux';
 import Pages from './Pages';
 import InputForm from './InputForm';
@@ -9,13 +9,18 @@ class UserPost extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            userID:null,
             limit: 3,
             pageOffset: 1,
             totalPostsByUser: 10,  //could be directly acheived from a API req and count length
-            filterParams:''
+            filterParams:'',
+            isFetched:false
         }
     }
     componentDidMount() {
+        this.setState({
+            userID : this.props.match.params.id
+        })
         this.props.fetchUserDetails(this.props.match.params.id)
         this.props.getPostsForAUserWithPagination(this.props.match.params.id, this.state.pageOffset, this.state.limit);
     }
@@ -29,10 +34,15 @@ class UserPost extends Component {
         this.setState({
             filterParams:keyword
         });
+        this.props.getPostsForAUser(this.state.userID);
     }
     render() {
-        const posts = this.props.posts.map(post => {
+        const posts = this.state.filterParams ==='' ?  this.props.paginatedPosts.map(post => {
             return <li className="posts-card" key={post.id+'-'+post.title}><div ><h4>{post.title}</h4></div></li>
+        }) : this.props.posts.map(post=>{
+            if(post.title.includes(this.state.filterParams)){
+                return <li className="posts-card" key={post.id+'-'+post.title}><div ><h4>{post.title}</h4></div></li>
+            }
         })
         return (<div>
             <div className="card card-body userCard">
@@ -53,18 +63,17 @@ class UserPost extends Component {
                 <div>
                 <div className="mx-1">
                             <InputForm searchBy="Blog title" filter={this.filterPosts}/>
-                            //TODO::Filter directly from global API
                         </div>
                     <div className="posts">
-                        <ul style={{ padding: '0px' }}>{posts.length > 0 ? posts : <div>Loading...</div>}</ul>
+                        <ul style={{ padding: '0px' }}>{posts.length > 0 ? posts : <div className="loader"><h4><span className="donutSpinner me-2 "></span>Loading...</h4></div>}</ul>
                     </div>
                 </div>
                 <div>
-                    <Pages 
+                  { this.state.filterParams==='' && <Pages 
                     totalPages={this.state.totalPostsByUser} 
                     currentPage = {this.state.pageOffset} 
                     limit={this.state.limit}
-                    updatePost={this.updatePosts} />
+                    updatePost={this.updatePosts} />}
                 </div>
             </div>
         </div>
@@ -73,9 +82,15 @@ class UserPost extends Component {
 }
 
 const mapStateToProps = (state) => {
+    console.log(state.posts);
     return {
         userDetail: state.userDetail,
-        posts: state.posts
+        paginatedPosts: state.paginatedPosts,
+        posts:state.posts
     }
 }
-export default connect(mapStateToProps, { fetchUserDetails, getPostsForAUserWithPagination })(UserPost);
+export default connect(mapStateToProps, { 
+    fetchUserDetails, 
+    getPostsForAUserWithPagination,
+    getPostsForAUser
+ })(UserPost);

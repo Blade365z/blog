@@ -14,7 +14,7 @@ Argument(s) to the function : userID
 export const getPostsForAUser = (id, isOnlyNumRequired = false) => async dispatch => {
     try {
         const response = await blogApi.get(`/posts?userId=${id}`);
-        isOnlyNumRequired ? dispatch({ type: 'FETCH_NUMBER_OF_POST_OF_USER', payload: { id: id, num: response.data.length } }) : dispatch({ type: 'FETCH_POST_OF_USER', payload: response.data });
+        isOnlyNumRequired ? dispatch({ type: 'FETCH_NUMBER_OF_POST_OF_USERS', payload: { id: id, num: response.data.length } }) : dispatch({ type: 'FETCH_POST_OF_USER', payload: response.data });
     } catch (error) {
         console.log(error)
     }
@@ -47,3 +47,5 @@ export const getPostsForAUserWithPagination = (id, pageOffset, limit) => async d
         console.log(error)
     }
 }
+
+

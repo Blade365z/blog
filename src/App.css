@@ -19,6 +19,9 @@
 .active-page{
     background-color: rgba(128, 128, 128, 0.192);
 }
+.loader{
+text-align: center;
+}
 @media (min-width:320px) {
     /* smartphones, iPhone, portrait 480x320 phones */
     .filter-form{
@@ -77,4 +80,22 @@
 
 @media (min-width:1281px) {
       /* hi-res laptops and desktops */
+}
+
+
+.donutSpinner {
+    display: inline-block;
+    border: 4px solid #0a58ca;
+    border-left-color: #ffffff;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    margin-top: 8%;
+    animation: donut-spin 1.2s linear infinite;
+}
+
+@keyframes donut-spin {
+    to {
+        transform: rotate(1turn);
+    }
 }
