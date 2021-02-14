@@ -1,102 +1,128 @@
-.main{
+.main {
     margin-top: 3%;
 }
-.posts-card:hover{
-   cursor: pointer;
-   background-color:#0d6dfd50 ;
+
+.posts-card:hover {
+    cursor: pointer;
+    background-color: #0d6dfd50;
 }
-.pagesDiv{
+
+.pagesDiv {
     justify-content: center;
     text-align: center;
 }
-.page-nos{
+
+.page-nos {
     cursor: pointer;
 }
 
-.active-page{
+.active-page {
     background-color: rgba(128, 128, 128, 0.192);
 }
-.loader{
-text-align: center;
+
+.loader {
+    text-align: center;
 }
-.posts-card{
+
+#show-comments:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+#delete-post:hover{
+    cursor: pointer;
+    text-decoration: underline; 
+}
+
+.posts-card {
     list-style: none;
-    margin:6px 6px 10px 6px;
-    padding:10px 10px 10px 10px;
+    margin: 6px 6px 10px 6px;
+    padding: 10px 10px 10px 10px;
     background-color: rgba(149, 149, 149, 0.164);
 }
+
 @media (min-width:320px) {
     /* smartphones, iPhone, portrait 480x320 phones */
-    .filter-form{
+    .filter-form {
         margin-top: 5px;
         max-width: 100%;
     }
-    .userPhoto{
-        font-size:2em   ;
+    .userPhoto {
+        font-size: 2em;
     }
-    .userCard{
+    .userCard {
         max-width: 100%;
-        margin-top:5px;
+        margin-top: 5px;
     }
-    .postsOfuserCard{
-        margin-top:15px;
-
+    .postsOfuserCard {
+        margin-top: 15px;
     }
-  
-    .user-post-nav{
+    .user-post-nav {
         display: block;
     }
-    .posts{
+    .posts {
         min-height: 300px;
         max-height: 400px;
         overflow-y: auto;
     }
-    .pagesDiv{
+    .pagesDiv {
         margin-bottom: 0px;
         margin-top: 20px;
     }
+    .comment{
+        list-style: none;
+        margin:10px 6px 10px 6px;
+    }
+    #delete-post{
+     margin-left: auto;
+    }
+    
 }
 
 @media (min-width:481px) {
-  
     /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */
 }
 
 @media (min-width:641px) {
     /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
-  
 }
 
 @media (min-width:961px) {
-    .user-post-nav{
+    .user-post-nav {
         display: flex;
     }
     /* tablet, landscape iPad, lo-res laptops ands desktops */
 }
 
 @media (min-width:1025px) {
-    .filter-form{
+    .filter-form {
         margin-top: 0px;
         max-width: 40%;
     }
-    .userPhoto{
-        font-size:3em   ;
+    .userPhoto {
+        font-size: 3em;
     }
-    .userCard{
-        max-width:50%;
-        margin-top:5px;
+    .userCard {
+        max-width: 50%;
+        margin-top: 5px;
     }
     /* big landscape tablets, laptops, and desktops */
-    .pagesDiv{
+    .pagesDiv {
         margin-bottom: 0px;
         margin-top: 0px;
     }
+    .comment{
+        max-width: 60%;
+        list-style: none;
+    }
+    #delete-post{
+        margin-left: 30px;
+       }
 }
 
 @media (min-width:1281px) {
-      /* hi-res laptops and desktops */
+    /* hi-res laptops and desktops */
 }
-
 
 .donutSpinner {
     display: inline-block;

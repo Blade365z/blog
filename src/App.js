@@ -19,7 +19,7 @@ export default function App() {
                     </Route>
                     <Route path="/home" component={Home} exact />
                     <Route path="/posts/:id" component={UserPost} exact />
-                    <Route path="/post/:id" component={Post} exact />
+                    <Route path="/post/:userID/:id" component={Post} exact />
                 </Switch>
             </div>
         </div>

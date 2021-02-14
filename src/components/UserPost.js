@@ -38,10 +38,10 @@ class UserPost extends Component {
     }
     render() {
         const posts = this.state.filterParams === '' ? this.props.paginatedPosts.map(post => {
-            return <li className="posts-card"  onClick={()=>{this.props.history.push(`/post/${post.id}`)}}  key={post.id + '-' + post.title}><div ><h4>{post.title}</h4></div></li>
+            return <li className="posts-card"  onClick={()=>{this.props.history.push(`/post/${this.state.userID}/${post.id}`)}}  key={post.id + '-' + post.title}><div ><h4>{post.title}</h4></div></li>
         }) : this.props.posts.map(post => {
             if (post.title) {
-                return post.title.includes(this.state.filterParams) ? <li className="posts-card" onClick={()=>{this.props.history.push(`/post/${post.id}`)}}  key={post.id + '-' + post.title}><div ><h4>{post.title}</h4></div></li> : null
+                return post.title.includes(this.state.filterParams) ? <li className="posts-card" onClick={()=>{this.props.history.push(`/post/${this.state.userID}/${post.id}`)}}  key={post.id + '-' + post.title}><div ><h4>{post.title}</h4></div></li> : null
             }
         })
         return (<div>

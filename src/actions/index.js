@@ -38,12 +38,20 @@ export const fetchUserDetails = (id) => async dispatch => {
     dispatch({ type: 'FETCH_USER_DETAILS', payload: response.data });
 }
 
+
+//Fetching Details of user by taking PostID as arg.
+/*
+Argument(s) to the function : Post ID
+ */
 export const getPostDetails = (id) => async dispatch =>{
     const response = await blogApi.get(`/posts/${id}`);
     dispatch({ type: 'FETCH_POST_DETAILS', payload: response.data });
 }
 
-
+//Fetching all the users deatils for an user ID with Pagination. 
+/*
+Argument(s) to the function : userID , Page Number or offset and Maximum number of pages(limit)
+ */
 export const getPostsForAUserWithPagination = (id, pageOffset, limit) => async dispatch => {
     try {
         const response = await blogApi.get(`/posts?userId=${id}&_page=${pageOffset}&_limit=${limit}`);
@@ -53,4 +61,11 @@ export const getPostsForAUserWithPagination = (id, pageOffset, limit) => async d
     }
 }
 
-
+//Fetching all the components in a post
+/*
+Argument(s) to the function : Post ID
+ */
+export const getPostComments = (id) => async dispatch =>{
+    const response = await blogApi.get(`/comments?postId=${id}`);
+    dispatch({ type: 'FETCH_COMMENTS_FOR_POSTS', payload: response.data });
+}
