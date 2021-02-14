@@ -38,6 +38,11 @@ export const fetchUserDetails = (id) => async dispatch => {
     dispatch({ type: 'FETCH_USER_DETAILS', payload: response.data });
 }
 
+export const getPostDetails = (id) => async dispatch =>{
+    const response = await blogApi.get(`/posts/${id}`);
+    dispatch({ type: 'FETCH_POST_DETAILS', payload: response.data });
+}
+
 
 export const getPostsForAUserWithPagination = (id, pageOffset, limit) => async dispatch => {
     try {
