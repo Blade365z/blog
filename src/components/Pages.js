@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
 
 class Pages extends Component {
-
+    //Pages component
     getPages = () => {
-        const total = this.props.totalPages;
-        const limit = this.props.limit;
+        const total = this.props.totalPages; // total number of pages 
+        const limit = this.props.limit; // maximum number of posts in a page
         const lastPage = Math.ceil(total / limit)
         const pagesArr = Array.from(Array(lastPage).keys())
         return pagesArr;
     }
     pageClicked = (page) => {
-        this.props.updatePost(page);
+        this.props.updatePost(page); // On page Click
     }
     render() {
         const pagesBtn = this.getPages().map(page => {

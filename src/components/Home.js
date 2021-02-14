@@ -8,42 +8,44 @@ import { Link } from 'react-router-dom';
 
 
 class Home extends Component {
+      //Initializing component state
     constructor() {
         super();
         this.state = {
-            filterParam: 'Username',
-            filterKeyword: '',
+            filterParam: 'Username', // maintaining a state for filter type USERNAME OR COMPANY
+            filterKeyword: '', //Filtering parameter for filter box.
         }
     }
     
     componentDidMount() {
         this.props.fetchUsersWithBlogCount();
-
     }
 
+    //Filter by type is it USERNAME (OR) COMPANY 
     onFilterApply = (data) => {
         this.setState({
             filterKeyword: data
         })
     }
-    updateSearchParams = (params) => {
+//Updating filer parameters
+    updateFilterParams = (params) => {
         this.setState({
             filterParam: params
         })
     }
-    ComponentW
 
     render() {
+        // if no filter parameter  directly render list else  do filteration and then  render.
         const list = this.props.users.map((user, i) => {
             const num = this.props.posts.find(key => key.id === user.id ? key.num : 0)
             if (this.state.filterKeyword === '') {
 
             } else {
                 if (this.state.filterParam === 'Username') {
-                    if (!user.name.includes(this.state.filterKeyword))
+                    if (!user.name.includes(this.state.filterKeyword)) // if the userName doesnot includes the filter keyword
                         return ;
                 } else {
-                    if (!user.company.name.includes(this.state.filterKeyword))
+                    if (!user.company.name.includes(this.state.filterKeyword))// if the companyName doesnot includes the filter keyword
                         return ;
                 }
             }
@@ -53,7 +55,7 @@ class Home extends Component {
         })
         return (
             <div>
-                <InputForm filter={this.onFilterApply} searchBy={this.state.filterParam} updateSearchParams={this.updateSearchParams} />
+                <InputForm filter={this.onFilterApply} searchBy={this.state.filterParam} updateSearchParams={this.updateFilterParams} />
                 <table className="table">
                     <thead className="table-dark">
                         <tr >
@@ -73,7 +75,7 @@ class Home extends Component {
         )
     }
 }
-
+// Mapping state to props
 const mapStateToProps = (state) => {
     return { users: state.users, posts: state.posts }
 }

@@ -6,37 +6,41 @@ import InputForm from './InputForm';
 
 
 class UserPost extends Component {
+      //Initializing component state
     constructor(props) {
         super(props);
         this.state = {
-            userID: null,
-            limit: 3,
-            pageOffset: 1,
+            userID: null, 
+            limit: 3,// maximum number of posts in a page
+            pageOffset: 1, //currentPageNumber
             totalPostsByUser: 10,  //could be directly acheived from a API req and count length
-            filterParams: '',
-            isFetched: false
+            filterParams: '',//Filtering parameter for search box.
         }
     }
     componentDidMount() {
         this.setState({
             userID: this.props.match.params.id
-        })
-        this.props.fetchUserDetails(this.props.match.params.id)
-        this.props.getPostsForAUserWithPagination(this.props.match.params.id, this.state.pageOffset, this.state.limit);
+        }) //setting userID state from url params
+        this.props.fetchUserDetails(this.props.match.params.id) //action to fetch user details
+        this.props.getPostsForAUserWithPagination(this.props.match.params.id, this.state.pageOffset, this.state.limit); //action to fetch posts of the user WITH pagination.
     }
+   //Method upon clicking on any page number.
     updatePosts = (pageNo) => {
         this.setState({
             pageOffset: pageNo
         });
-        this.props.getPostsForAUserWithPagination(this.props.match.params.id, pageNo, this.state.limit);
+        this.props.getPostsForAUserWithPagination(this.props.match.params.id, pageNo, this.state.limit); 
     }
+    //Method to filter post
     filterPosts = (keyword) => {
+        //when filtering entire posts needs to be fetched and to be computed upon
         this.setState({
             filterParams: keyword
         });
-        this.props.getPostsForAUser(this.state.userID);
+        this.props.getPostsForAUser(this.state.userID); // fetching posts of that user
     }
     render() {
+        //If any filter parameters provided then filter else directly render the paginaated posts.
         const posts = this.state.filterParams === '' ? this.props.paginatedPosts.map(post => {
             return <li className="posts-card"  onClick={()=>{this.props.history.push(`/post/${this.state.userID}/${post.id}`)}}  key={post.id + '-' + post.title}><div ><h4>{post.title}</h4></div></li>
         }) : this.props.posts.map(post => {
@@ -81,7 +85,7 @@ class UserPost extends Component {
         )
     }
 }
-
+//Mapping state to props.
 const mapStateToProps = (state) => {
     console.log(state.posts);
     return {
