@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { fetchUsersWithBlogCount } from '../actions';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
 import InputForm from './InputForm';
 import { Link } from 'react-router-dom';
 

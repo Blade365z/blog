@@ -2,7 +2,7 @@
   "name": "blog-posts",
   "version": "0.1.0",
   "private": true,
-  "homepage":"“http://blade365z.github.io/blogPost",
+  "homepage":"“https://blade365z.github.io/blog",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",

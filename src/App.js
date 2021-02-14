@@ -1,6 +1,7 @@
 import React from 'react'
 import { Route, Switch, Redirect, Link } from 'react-router-dom';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+ 
 import Home from './components/Home';
 import UserPost from './components/UserPost';
 import Post from './components/Post';
